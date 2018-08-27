@@ -7,7 +7,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { masterFirebaseConfig } from './api-keys';
 import { HomeComponent } from './home/home.component';
-<<<<<<< HEAD
+import { BattleComponent } from './battle/battle.component';
 import { routing } from './app.routing';
 
 export const firebaseConfig = {
@@ -16,9 +16,6 @@ export const firebaseConfig = {
   databaseURL: masterFirebaseConfig.databaseURL,
   storageBucket: masterFirebaseConfig.storageBucket
 };
-=======
-import { BattleComponent } from './battle/battle.component';
->>>>>>> Nick
 
 @NgModule({
   declarations: [
@@ -30,9 +27,9 @@ import { BattleComponent } from './battle/battle.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    routing,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule,
-    routing
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
