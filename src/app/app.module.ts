@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { masterFirebaseConfig } from './api-keys';
 import { HomeComponent } from './home/home.component';
 import { routing } from './app.routing';
+import { LootCrateComponent } from './loot-crate/loot-crate.component';
+import { LootBoxService } from './loot-box.service'
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -19,7 +21,8 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LootCrateComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     routing
   ],
-  providers: [],
+  providers: [LootBoxService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
