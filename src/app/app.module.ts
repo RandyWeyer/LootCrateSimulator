@@ -7,8 +7,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { masterFirebaseConfig } from './api-keys';
 import { HomeComponent } from './home/home.component';
-import { BattleComponent } from './battle/battle.component';
+
 import { routing } from './app.routing';
+
+import { BattleComponent } from './battle/battle.component';
+import { LootCrateComponent } from './loot-crate/loot-crate.component';
+// import { LootBoxService } from './loot-box.service';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -21,7 +25,8 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     HomeComponent,
-    BattleComponent
+    BattleComponent,
+    LootCrateComponent
   ],
   imports: [
     BrowserModule,

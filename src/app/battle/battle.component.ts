@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Player } from '../models/player.model';
 import { Enemy } from '../models/enemy.model';
 
@@ -36,6 +37,12 @@ export class BattleComponent implements OnInit {
     } else if(newPlayer.attack <= newEnemy.defense){
       enemy.hitpoints -= 1;
     }
+
+
+  RunGame() {
+    const startInterval = setInterval(() => {
+      // 1000 -= 4;
+    }, 100);
 
   }
   // RunGame() {
