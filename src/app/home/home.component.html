@@ -1,17 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="">LCS</a>  
+    <a class="navbar-brand" routerLink="">LCS</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="User Name" aria-label="user">
-        <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="password">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="click">Log In</button>
+        <input class="form-control mr-sm-2" type="text" placeholder="User Name" #inputUserName>
+        <input class="form-control mr-sm-2" type="password" placeholder="Password" #inputUserPassword>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="logIn(inputUserName.value, inputUserPassword.value)">Log In</button>
       </form>
     </div>
   </nav>
 
 <div class="container">
-  <h1>Welcome to LCS!!</h1>
-  <a routerLink="battle">Battle</a>
+  <div>
+    <h1 *ngIf="currentActivePlayer === null">Welcome to LCS!!</h1>
+    <h1 *ngIf="currentActivePlayer != null">Welcome, {{currentActivePlayer.username}}.</h1>
+    <a routerLink="battle">Battle</a>
+  </div>
 </div>

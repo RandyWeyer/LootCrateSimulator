@@ -1,0 +1,45 @@
+{
+  "players":
+  [
+    {
+        "username": "LCS",
+        "userpassword": "LCS",
+        "level": 1,
+        "idleAttack": 0,
+        "attack": 1,
+        "critChance": 0,
+        "criticalDamage": 1.5,
+        "gold": 0
+    },
+    {
+        "username": "LCS2",
+        "userpassword": "LCS2",
+        "level": 1,
+        "idleAttack": 0,
+        "attack": 1,
+        "critChance": 0,
+        "criticalDamage": 1.5,
+        "gold": 0
+    },
+    {
+        "username": "LCS3",
+        "userpassword": "LCS3",
+        "level": 1,
+        "idleAttack": 0,
+        "attack": 1,
+        "critChance": 0,
+        "criticalDamage": 1.5,
+        "gold": 0
+    },
+    {
+        "username": "LCS4",
+        "userpassword": "LCS4",
+        "level": 1,
+        "idleAttack": 0,
+        "attack": 1,
+        "critChance": 0,
+        "criticalDamage": 1.5,
+        "gold": 0
+    }
+  ]
+}

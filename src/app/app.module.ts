@@ -7,8 +7,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { masterFirebaseConfig } from './api-keys';
 import { HomeComponent } from './home/home.component';
-<<<<<<< HEAD
 import { routing } from './app.routing';
+import { BattleComponent } from './battle/battle.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -16,9 +16,6 @@ export const firebaseConfig = {
   databaseURL: masterFirebaseConfig.databaseURL,
   storageBucket: masterFirebaseConfig.storageBucket
 };
-=======
-import { BattleComponent } from './battle/battle.component';
->>>>>>> Nick
 
 @NgModule({
   declarations: [
