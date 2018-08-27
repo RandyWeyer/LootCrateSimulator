@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BattleComponent } from './battle.component';
+import { LootCrateComponent } from './loot-crate.component';
 
-describe('BattleComponent', () => {
-  let component: BattleComponent;
-  let fixture: ComponentFixture<BattleComponent>;
+describe('LootCrateComponent', () => {
+  let component: LootCrateComponent;
+  let fixture: ComponentFixture<LootCrateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BattleComponent ]
+      declarations: [ LootCrateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BattleComponent);
+    fixture = TestBed.createComponent(LootCrateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
