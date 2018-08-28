@@ -18,7 +18,7 @@ export class BattleComponent implements OnInit {
 
   activePlayer: Player[];
   constructor(private router: Router, private playerService: PlayerService) { }
-  currentActivePlayer: Player = null;
+  currentActivePlayer;
 
   ngOnInit() {
     let playerList = this.playerService.getPlayers();
@@ -32,6 +32,21 @@ export class BattleComponent implements OnInit {
       });
     })
   }
+
+  CurrentEnemyName() {
+    let enemyNameArray = ["Frodo", "Heidegger", "Snider", "Thundacheese", "Deviant", "Typical", "Normie"];
+    let enemyNameIndex = Math.floor(Math.random() * 7);
+    return enemyNameArray[enemyNameIndex];
+  }
+  enemyIsBoss() {
+    if(currentActivePlayer.level % 10 === 0){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  let currentLevelEnemy = new Enemy()
 
   // let testPlayer = new Player("randy", 3, 3, 3, 1, 3, 120, 1);
   // let testEnemy = new Enemy("colin", false, 1, 100, 1);

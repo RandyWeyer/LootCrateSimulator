@@ -1,3 +1,10 @@
-<h1>click</h1>
-<p> {{currentActivePlayer.username}}
-</p>
+<div *ngIf="currentActivePlayer != null">
+  <h1>Level {{currentActivePlayer.level}}</h1>
+  <p> {{currentActivePlayer.username}}</p>
+
+
+  <div id="enemyBattler" class="enemyBattlerSpace">
+
+  </div>
+  <!-- End of currentActivePlayer div -->
+</div>
