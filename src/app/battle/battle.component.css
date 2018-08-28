@@ -1,4 +1,16 @@
 .enemyBattlerSpace {
+  /*max-width: 50%;*/
+  /*margin: 100px 25% 100px 25%;*/
+  text-align: center;
+}
+.playerBattleSpace {
   max-width: 50%;
-  margin: 100px 25% 100px 25%;
+  float: right;
+  text-align: center;
+}
+#userSprite {
+  height: 200px;
+}
+#enemySprite {
+  height: 200px;
 }
