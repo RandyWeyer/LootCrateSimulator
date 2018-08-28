@@ -9,7 +9,9 @@
         "attack": 1,
         "critChance": 0,
         "criticalDamage": 1.5,
-        "gold": 0
+        "gold": 0,
+        "goldRate": 1,
+        "isActive": false
     },
     {
         "username": "LCS2",
@@ -19,7 +21,9 @@
         "attack": 1,
         "critChance": 0,
         "criticalDamage": 1.5,
-        "gold": 0
+        "gold": 0,
+        "goldRate": 1,
+        "isActive": false
     },
     {
         "username": "LCS3",
@@ -29,7 +33,9 @@
         "attack": 1,
         "critChance": 0,
         "criticalDamage": 1.5,
-        "gold": 0
+        "gold": 0,
+        "goldRate": 1,
+        "isActive": false
     },
     {
         "username": "LCS4",
@@ -39,7 +45,9 @@
         "attack": 1,
         "critChance": 0,
         "criticalDamage": 1.5,
-        "gold": 0
+        "gold": 0,
+        "goldRate": 1,
+        "isActive": false
     }
   ]
 }

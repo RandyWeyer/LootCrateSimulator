@@ -1,4 +1,10 @@
-<h1 (click)="ClickDamage(testPlayer, testEnemy)">click</h1>
-<p>
-{{activePlayer.attack}}
-</p>
+<div *ngIf="currentActivePlayer != null">
+  <h1>Level {{currentActivePlayer.level}}</h1>
+  <p> {{currentActivePlayer.username}}</p>
+
+
+  <div id="enemyBattler" class="enemyBattlerSpace">
+
+  </div>
+  <!-- End of currentActivePlayer div -->
+</div>

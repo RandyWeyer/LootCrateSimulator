@@ -40,5 +40,9 @@ export class HomeComponent implements OnInit {
       });
     })
   }
+  newPlayer(newName: string, newPassword: string)
+  {
+    
+  }
 
 }
