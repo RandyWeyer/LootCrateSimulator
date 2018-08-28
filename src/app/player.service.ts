@@ -11,15 +11,17 @@ export class PlayerService
   battlePlayer: FirebaseListObservable<any[]>;
   players: FirebaseListObservable<any[]>;
   generatedLootCrate;
+  PlayerLootCrate;
+  // : FirebaseListObservable<any[]>;
 
   constructor(private database: AngularFireDatabase)
   {
     this.player = database.list('player');
   }
-//   getPlayer()
-//   {
-//     return this.player;
-//   }
+  // getPlayer()
+  // {
+  //   return this.player;
+  // }
 getPlayerById(playerId: string)
 {
   return this.database.object('players/' + playerId);
@@ -48,7 +50,6 @@ getPlayers() {
 
 insert(player: Player) {
   this.activePlayer.push({
-
     username : player.username,
     userpassword : player.userpassword,
     level : player.level,
@@ -57,14 +58,16 @@ insert(player: Player) {
     critChance : player.critChance,
     criticalDamage : player.criticalDamage,
     gold : player.gold,
-    goldRate : player.goldRate
+    goldRate : player.goldRate,
+    playerLoot: player.playerLoot
   });
 }
 generateLootCrate()
 {
   this.generatedLootCrate = new lootCrate('', null, null, null, null, null, null);
-  this.generatedLootCrate.toString()
-  this.activePlayer.playerLoot.push(this.generatedLootCrate)
+  this.PlayerLootCrate = this.generatedLootCrate;
+  this.activePlayer.playerLoot.push(this.PlayerLootCrate);
+  console.log('lootcrate made')
 }
   // updateplayers(player: Player) {
   //   this.activePlayer.update(player.$key,
@@ -84,5 +87,4 @@ generateLootCrate()
   deleteplayers($key: string) {
     this.activePlayer.remove($key);
   }
-
 }

@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit()
   {
-
+    
   }
   logIn(userName: string, userPassword: string)
   {
