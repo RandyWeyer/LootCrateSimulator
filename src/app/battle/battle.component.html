@@ -1,6 +1,6 @@
 <div *ngIf="currentActivePlayer != null">
-  <h1>Level {{currentActivePlayer.level}}</h1>
-  <p> {{currentActivePlayer.username}}</p>
+  <h1>Level {{(currentActivePlayer | async )?.level}}</h1>
+  <p> {{(currentActivePlayer | async )?.username}}</p>
 
 
   <div id="enemyBattler" class="enemyBattlerSpace">

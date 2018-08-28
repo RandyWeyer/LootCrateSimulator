@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Player } from '../models/player.model';
 import { Enemy } from '../models/enemy.model';
@@ -16,21 +18,34 @@ import { EnemyService } from '../enemy.service';
 })
 export class BattleComponent implements OnInit {
 
-  activePlayer: Player[];
-  constructor(private router: Router, private playerService: PlayerService) { }
   currentActivePlayer;
+  activePlayerId: string;
 
-  ngOnInit() {
-    let playerList = this.playerService.getPlayers();
-    playerList.subscribe(players => {
-      players.forEach(player => {
-        if(player.isActive === true)
-        {
-          this.currentActivePlayer = player;
-          this.playerService.setActivePlayer(player);
-        }
-      });
+  constructor
+  (
+    private route: ActivatedRoute,
+    private location: Location,
+    private router: Router,
+    private playerService: PlayerService
+  ) { }
+
+  ngOnInit()
+  {
+    this.route.params.forEach((urlParameters) => {
+      this.activePlayerId = urlParameters['id'];
     })
+    this.currentActivePlayer = this.playerService.getPlayerById(this.activePlayerId);
+    console.log(this.currentActivePlayer);
+    // let playerList = this.playerService.getPlayers();
+    // playerList.subscribe(players => {
+    //   players.forEach(player => {
+    //     if(player.isActive === true)
+    //     {
+    //       this.currentActivePlayer = player;
+    //       this.playerService.setActivePlayer(player);
+    //     }
+    //   });
+    // })
   }
 
   CurrentEnemyName() {
@@ -46,7 +61,7 @@ export class BattleComponent implements OnInit {
     }
   }
 
-  let currentLevelEnemy = new Enemy()
+  // let currentLevelEnemy = new Enemy()
 
   // let testPlayer = new Player("randy", 3, 3, 3, 1, 3, 120, 1);
   // let testEnemy = new Enemy("colin", false, 1, 100, 1);

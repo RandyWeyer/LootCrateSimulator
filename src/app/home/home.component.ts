@@ -20,8 +20,9 @@ import { PlayerService } from './../player.service';
 export class HomeComponent implements OnInit {
 
   currentActivePlayer: Player = null;
+  currentRoute: string = this.router.url;
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService, private router: Router) { }
 
   ngOnInit()
   {
@@ -40,9 +41,13 @@ export class HomeComponent implements OnInit {
       });
     })
   }
+  startBattle(activePlayer)
+  {
+    this.router.navigate(['battle', activePlayer.$key]);
+  }
   newPlayer(newName: string, newPassword: string)
   {
-    
+
   }
 
 }

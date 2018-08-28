@@ -7,16 +7,20 @@ export class PlayerService
 {
   player: FirebaseListObservable<any[]>;
   activePlayer: FirebaseListObservable<any[]>;
-  constructor(private firebase: AngularFireDatabase) { }
   battlePlayer: FirebaseListObservable<any[]>;
-  // constructor(private database: AngularFireDatabase)
-  // {
-  //   this.player = database.list('player');
-  // }
+
+  constructor(private database: AngularFireDatabase)
+  {
+    this.player = database.list('player');
+  }
 //   getPlayer()
 //   {
 //     return this.player;
 //   }
+getPlayerById(playerId: string)
+{
+  return this.database.object('players/' + playerId);
+}
   setActivePlayer(active)
   {
     this.activePlayer = active;
@@ -35,7 +39,7 @@ export class PlayerService
   }
 // }
 getPlayers() {
-  this.activePlayer = this.firebase.list('players');
+  this.activePlayer = this.database.list('players');
   return this.activePlayer;
 }
 
@@ -53,20 +57,20 @@ insert(player: Player) {
     goldRate : player.goldRate
   });
 }
-  updateplayers(player: Player) {
-    this.activePlayer.update(player.$key,
-    {
-      username : player.username,
-      userpassword : player.userpassword,
-      level : player.level,
-      idleAttack : player.idleAttack,
-      attack : player.attack,
-      critChance : player.critChance,
-      criticalDamage : player.criticalDamage,
-      gold : player.gold,
-      goldRate : player.goldRate
-    });
-  }
+  // updateplayers(player: Player) {
+  //   this.activePlayer.update(player.$key,
+  //   {
+  //     username : player.username,
+  //     userpassword : player.userpassword,
+  //     level : player.level,
+  //     idleAttack : player.idleAttack,
+  //     attack : player.attack,
+  //     critChance : player.critChance,
+  //     criticalDamage : player.criticalDamage,
+  //     gold : player.gold,
+  //     goldRate : player.goldRate
+  //   });
+  // }
 
   deleteplayers($key: string) {
     this.activePlayer.remove($key);

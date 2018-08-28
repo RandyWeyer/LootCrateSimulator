@@ -15,7 +15,7 @@
   <div>
     <h1 *ngIf="currentActivePlayer === null">Welcome to LCS!!</h1>
     <h1 *ngIf="currentActivePlayer != null">Welcome, {{currentActivePlayer.username}}.</h1>
-    <a routerLink="battle">Battle</a>
+    <a (click)="startBattle(currentActivePlayer)">Battle</a>
   </div>
 </div>
 <div>
@@ -23,6 +23,6 @@
   <form class="newPlayer">
   <input class="form-control mr-sm-2" type="text" placeholder="New Name" #inputNewName>
   <input class="form-control mr-sm-2" type="text" placeholder="New Password" #inputNewPassword>
-  <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="newPlayer(inputNewName.value, inputNewPassword.value">Create Account</button>
+  <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="newPlayer(inputNewName.value, inputNewPassword.value)">Create Account</button>
     </form>
 </div>

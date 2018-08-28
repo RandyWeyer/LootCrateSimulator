@@ -11,7 +11,7 @@ const appRoutes: Routes =
         component: HomeComponent
     },
     {
-        path: "battle",
+        path: "battle/:id",
         component: BattleComponent
     },
     {
