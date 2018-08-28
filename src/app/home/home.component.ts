@@ -5,17 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database'
 import { AngularFireModule } from 'angularfire2';
-import { LootBoxService } from '../loot-box.service';
 import { lootCrate } from '../models/lootcrate.model'
 import { Router } from '@angular/router';
 import { Player } from '../models/player.model';
 import { PlayerService } from './../player.service';
+import { AppComponent } from '../app.component'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [PlayerService, LootBoxService]
+  providers: [PlayerService]
 })
 export class HomeComponent implements OnInit {
 
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit()
   {
-
+    
   }
   logIn(userName: string, userPassword: string)
   {

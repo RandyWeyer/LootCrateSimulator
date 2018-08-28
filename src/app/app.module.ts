@@ -7,6 +7,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { masterFirebaseConfig } from './api-keys';
 import { HomeComponent } from './home/home.component';
+import { Player } from './models/player.model';
+import { PlayerService } from './player.service';
+import { Injectable } from '@angular/core';
+import { lootCrate } from './models/lootcrate.model'
 
 import { routing } from './app.routing';
 
@@ -36,7 +40,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [PlayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
