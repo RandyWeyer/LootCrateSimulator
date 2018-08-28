@@ -7,16 +7,12 @@ import { Player } from './models/player.model';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { LootCrateComponent } from './loot-crate/loot-crate.component';
 
-// @Injectable()
-// export class LootBoxService {
-// lootcrates: FirebaseListObservable<any[]>;
-//
-// constructor(private name: lootCrate, private itemRarity: lootCrate, private lootId: lootCrate, private level: Player) {}
+@Injectable()
+export class LootBoxService {
+  generatedLootCrate;
 
-  // public lootCratel;
-
-  // generateLootCrate() {
-  // var lootCrate = new lootCrate('testname', this.itemRarity, this.lootId)
-  //   lootCrate.itemRarity = Math.floor(Math.random()*5);
-  //   }
-  // }
+  generateLootCrate() {
+      this.generatedLootCrate = new lootCrate('', null, null, null, null, null, null)
+      console.log(this.generatedLootCrate);
+    }
+  }
