@@ -30,7 +30,6 @@ export class PlayerService
   updatePlayerActive(localUpdatedPlayer){
     var playerEntryInFirebase = this.getPlayerById(localUpdatedPlayer.$key);
     playerEntryInFirebase.update({isActive: localUpdatedPlayer.isActive = true});
-    console.log("update");
   }
   // insert(player: Player) {
   //   this.activePlayer.push({

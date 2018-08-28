@@ -18,13 +18,16 @@ import { PlayerService } from './../player.service';
   providers: [PlayerService, LootBoxService]
 })
 export class HomeComponent implements OnInit {
+
+  // testGenToDisplay;
+
   currentActivePlayer: Player = null;
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService, private lootBoxService: LootBoxService) { }
 
   ngOnInit()
   {
-
+    this.lootBoxService.generateLootCrate();
   }
   logIn(userName: string, userPassword: string)
   {
