@@ -19,6 +19,7 @@ import { EnemyService } from '../enemy.service';
 export class BattleComponent implements OnInit {
   currentActivePlayer;
   activePlayerId: string;
+  currentLevelEnemy;
 
   constructor
   (
@@ -35,6 +36,14 @@ export class BattleComponent implements OnInit {
     })
     this.currentActivePlayer = this.playerService.getPlayerById(this.activePlayerId);
     console.log(this.currentActivePlayer);
+    this.currentLevelEnemy= <Enemy>
+    {
+      name: this.currentEnemyName(),
+      isBoss: this.enemyIsBoss(),
+      defense: this.enemyDefense(),
+      hitPoints: this.enemyHitPoints(),
+      healthRegen: this.enemyHealthRegen()
+    }
   }
 
   currentEnemyName() {
@@ -74,14 +83,7 @@ export class BattleComponent implements OnInit {
       return 0;
     }
   }
-  currentLevelEnemy: Enemy = <Enemy>
-  {
-    name: this.currentEnemyName(),
-    isBoss: this.enemyIsBoss(),
-    defense: this.enemyDefense(),
-    hitPoints: this.enemyHitPoints(),
-    healthRegen: this.enemyHealthRegen()
-  }
+
 
 
   // let currentLevelEnemy = new Enemy()

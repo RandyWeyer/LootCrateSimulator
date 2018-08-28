@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
   }
   startBattle(activePlayer)
   {
+    console.log(activePlayer);
     this.router.navigate(['battle', activePlayer.$key]);
   }
   newPlayer(newName: string, newPassword: string)
