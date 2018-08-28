@@ -12,6 +12,9 @@ import { Injectable } from '@angular/core';
 export class AppComponent
 {
   masterCurrentPlayer: Player = new Player("LCS", "LCS", 1, 0, 1, 0, 1.5, 0, 1);
-
+  activePlayer(clickedPlayer){
+    this.masterCurrentPlayer = clickedPlayer;
+    alert(this.masterCurrentPlayer);
+  }
 
 }
