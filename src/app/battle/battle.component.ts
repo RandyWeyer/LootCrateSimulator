@@ -38,15 +38,15 @@ export class BattleComponent implements OnInit {
     let enemyNameIndex = Math.floor(Math.random() * 7);
     return enemyNameArray[enemyNameIndex];
   }
-  enemyIsBoss() {
-    if(currentActivePlayer.level % 10 === 0){
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  let currentLevelEnemy = new Enemy()
+  // enemyIsBoss() {
+  //   if(currentActivePlayer.level % 10 === 0){
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+  //
+  // let currentLevelEnemy = new Enemy()
 
   // let testPlayer = new Player("randy", 3, 3, 3, 1, 3, 120, 1);
   // let testEnemy = new Enemy("colin", false, 1, 100, 1);

@@ -5,29 +5,34 @@ import { Component, OnInit } from '@angular/core';
 // import { HttpModule } from '@angular/http';
 // import { AngularFireDatabaseModule } from 'angularfire2/database'
 // import { AngularFireModule } from 'angularfire2';
-import { LootBoxService } from '../loot-box.service';
 // import { lootCrate } from '../models/lootcrate.model'
 // import { Router } from '@angular/router';
 import { Player } from '../models/player.model';
 import { PlayerService } from './../player.service';
+import { AppComponent } from '../app.component'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [PlayerService, LootBoxService]
+  providers: [PlayerService]
 })
 export class HomeComponent implements OnInit {
 
   // testGenToDisplay;
 
-  currentActivePlayer: Player = null;
+  // currentActivePlayer: Player = masterCurrentPlayer;
 
-  constructor(private playerService: PlayerService, private lootBoxService: LootBoxService) { }
+
+
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit()
   {
-    this.lootBoxService.generateLootCrate();
+
+
+    }
+
   }
   logIn(userName: string, userPassword: string)
   {
@@ -37,7 +42,7 @@ export class HomeComponent implements OnInit {
         if(userName === player.username && userPassword === player.userpassword)
         {
           this.playerService.updatePlayerActive(player);
-          this.currentActivePlayer = player;
+          // this.currentActivePlayer = player;
           this.playerService.setActivePlayer(player);
         }
       });
