@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Player } from './player.model';
+import { Player } from './models/player.model';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Injectable()
@@ -19,5 +19,9 @@ export class PlayerService
   setActivePlayer(active)
   {
     this.activePlayer = active;
+  }
+  getActivePlayer()
+  {
+    return this.activePlayer;
   }
 }

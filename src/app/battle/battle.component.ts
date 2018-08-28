@@ -15,36 +15,31 @@ import { EnemyService } from '../enemy.service';
   providers: [PlayerService, EnemyService]
 })
 export class BattleComponent implements OnInit {
-  // players: FirebaseListObservable<any[]>;
-  currentRoute: string = this.router.url;
 
   constructor(private router: Router, private playerService: PlayerService) { }
 
   ngOnInit() {
-
+    let playerList = this.playerService.getActivePlayer();
   }
-  let testPlayer = new Player("randy", 3, 3, 3, 1, 3, 120, 1);
-  let testEnemy = new Enemy("colin", false, 1, 100, 1);
+  // let testPlayer = new Player("randy", 3, 3, 3, 1, 3, 120, 1);
+  // let testEnemy = new Enemy("colin", false, 1, 100, 1);
+  getRandomInt(max) {
+    return Math.floor(Math.random()*Math.floor(max));
+  }
 
   ClickDamage(newPlayer: Player, newEnemy: Enemy) {
-    let rand = new Random();
     let critMultiply = 1;
-    if(rand.Next(0, 101) > newPlayer.critChance) {
+    if(this.getRandomInt(101) < newPlayer.critChance) {
       critMultiply = newPlayer.criticalDamage;
     }
     if(newPlayer.attack > newEnemy.defense){
-      enemy.hitpoints -= (newPlayer.attack - newEnemy.defense) * critMultiply;
+      newEnemy.hitPoints -= (newPlayer.attack - newEnemy.defense) * critMultiply;
     } else if(newPlayer.attack <= newEnemy.defense){
-      enemy.hitpoints -= 1;
+      newEnemy.hitPoints -= 1;
     }
-
-
-  RunGame() {
-    const startInterval = setInterval(() => {
-      // 1000 -= 4;
-    }, 100);
-
   }
+
+
   // RunGame() {
   //   const startInterval = setInterval(() => {
   //
