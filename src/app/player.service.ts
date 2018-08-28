@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Player } from './models/player.model';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { lootCrate } from './models/lootcrate.model'
 
 @Injectable()
 export class PlayerService
 {
   player: FirebaseListObservable<any[]>;
-  activePlayer: FirebaseListObservable<any[]>;
+  activePlayer;
   battlePlayer: FirebaseListObservable<any[]>;
+  players: FirebaseListObservable<any[]>;
+  generatedLootCrate;
 
   constructor(private database: AngularFireDatabase)
   {
@@ -56,6 +59,12 @@ insert(player: Player) {
     gold : player.gold,
     goldRate : player.goldRate
   });
+}
+generateLootCrate()
+{
+  this.generatedLootCrate = new lootCrate('', null, null, null, null, null, null);
+  this.generatedLootCrate.toString()
+  this.activePlayer.playerLoot.push(this.generatedLootCrate)
 }
   // updateplayers(player: Player) {
   //   this.activePlayer.update(player.$key,

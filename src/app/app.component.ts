@@ -2,16 +2,24 @@ import { Component } from '@angular/core';
 import { Player } from './models/player.model';
 import { PlayerService } from './player.service';
 import { Injectable } from '@angular/core';
+import { lootCrate } from './models/lootcrate.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [PlayerService]
+  providers: [PlayerService],
 })
 export class AppComponent
 {
-  masterCurrentPlayer: Player = new Player("LCS", "LCS", 1, 0, 1, 0, 1.5, 0, 1);
-
-
+  constructor(private playerService: PlayerService){}
+  masterCurrentPlayer: Player = new Player("LCS", "LCS", 1, 0, 1, 0, 1.5, 0, 1, []);
+  activePlayer(clickedPlayer){
+    this.masterCurrentPlayer = clickedPlayer;
+    alert(this.masterCurrentPlayer);
+    if(this.masterCurrentPlayer.level%10 === 0){
+      this.playerService.generateLootCrate();
+      console.log('Loot Crate Made!')
+    }
+  }
 }
