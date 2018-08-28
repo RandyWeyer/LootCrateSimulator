@@ -7,6 +7,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { masterFirebaseConfig } from './api-keys';
 import { HomeComponent } from './home/home.component';
+
 import { routing } from './app.routing';
 
 import { BattleComponent } from './battle/battle.component';
@@ -31,9 +32,9 @@ export const firebaseConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    routing,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule,
-    routing
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

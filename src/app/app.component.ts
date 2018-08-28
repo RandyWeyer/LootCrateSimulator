@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Player } from './player.model';
+import { Player } from './models/player.model';
 import { PlayerService } from './player.service';
 import { Injectable } from '@angular/core';
 
@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 })
 export class AppComponent
 {
-  masterCurrentPlayer: Player = new Player("LCS", "LCS", 1, 0, 1, 0, 1.5, 0);
+  masterCurrentPlayer: Player = new Player("LCS", "LCS", 1, 0, 1, 0, 1.5, 0, 1);
 
 
 }

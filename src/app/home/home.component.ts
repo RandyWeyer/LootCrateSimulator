@@ -8,7 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { LootBoxService } from '../loot-box.service';
 import { lootCrate } from '../models/lootcrate.model'
 import { Router } from '@angular/router';
-import { Player } from './../player.model';
+import { Player } from '../models/player.model';
 import { PlayerService } from './../player.service';
 
 @Component({
