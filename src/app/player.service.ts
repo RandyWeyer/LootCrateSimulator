@@ -63,17 +63,15 @@ insert(player: Player) {
     playerLoot: player.playerLoot
   });
 }
-generateLootCrate()
+generateLootCrate(currentPlayer)
 {
-  this.generatedLootCrate = new lootCrate('', null, null, null, null, null);
-  this.PlayerLootCrate = this.generatedLootCrate;
-  this.activePlayer.playerLoot.push(this.PlayerLootCrate);
-  console.log('lootcrate made')
+  this.generatedLootCrate = new lootCrate('', null, null, null, null, null, '');
+  return this.activePlayer.playerLoot;
 }
 generateShopCrate()
 {
-  this.generatedShopCrate = new lootCrate('', null, null, null, null, null);
-  console.log(this.generatedShopCrate);
+  this.generatedShopCrate = new lootCrate('', null, null, null, null, null, '');
+  return this.generatedShopCrate;
 }
   // updateplayers(player: Player) {
   //   this.activePlayer.update(player.$key,

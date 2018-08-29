@@ -24,7 +24,7 @@
         "criticalDamage": 1.5,
         "gold": 0,
         "goldRate": 1,
-        "playerLoot": [],
+        "playerLoot": [" "],
         "isActive": false
     },
     {
@@ -37,7 +37,7 @@
         "criticalDamage": 1.5,
         "gold": 0,
         "goldRate": 1,
-        "playerLoot": [],
+        "playerLoot": [" "],
         "isActive": false
     },
     {
@@ -50,7 +50,7 @@
         "criticalDamage": 1.5,
         "gold": 0,
         "goldRate": 1,
-        "playerLoot": [],
+        "playerLoot": [" "],
         "isActive": false
     }
   ]

@@ -16,7 +16,6 @@ import { routing } from './app.routing';
 
 import { BattleComponent } from './battle/battle.component';
 import { LootCrateComponent } from './loot-crate/loot-crate.component';
-// import { LootBoxService } from './loot-box.service';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,

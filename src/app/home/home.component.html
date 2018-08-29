@@ -16,7 +16,7 @@
     <h1 *ngIf="currentActivePlayer === null">Welcome to LCS!!</h1>
     <h1 *ngIf="currentActivePlayer != null">Welcome, {{currentActivePlayer.username}}.</h1>
     <button (click)="startBattle(currentActivePlayer)" class="btn btn-danger">Battle</button>
-    <button routerLink="lootBox" class="btn btn-warning">Loot Crate</button>
+    <button (click)="goToCrates(currentActivePlayer)" class="btn btn-warning">Loot Crate</button>
   </div>
 </div>
 <div>

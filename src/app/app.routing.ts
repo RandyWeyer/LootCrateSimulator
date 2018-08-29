@@ -15,7 +15,7 @@ const appRoutes: Routes =
         component: BattleComponent
     },
     {
-        path: "lootBox",
+        path: "lootBox/:id",
         component: LootCrateComponent
     }
 ];

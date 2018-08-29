@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit()
   {
-    
+
   }
   logIn(userName: string, userPassword: string)
   {
@@ -45,6 +45,10 @@ export class HomeComponent implements OnInit {
   {
     console.log(activePlayer);
     this.router.navigate(['battle', activePlayer.$key]);
+  }
+  goToCrates(activePlayer)
+  {
+        this.router.navigate(['lootBox', activePlayer.$key]);
   }
   newPlayer(newName: string, newPassword: string)
   {

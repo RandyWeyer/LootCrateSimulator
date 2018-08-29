@@ -18,7 +18,7 @@ export class AppComponent
     this.masterCurrentPlayer = clickedPlayer;
     alert(this.masterCurrentPlayer);
     if(this.masterCurrentPlayer.level%10 === 0){
-      this.playerService.generateLootCrate();
+
       console.log('Loot Crate Made!')
     }
   }
