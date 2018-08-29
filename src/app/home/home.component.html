@@ -19,11 +19,11 @@
   <div>
     <h1 *ngIf="currentActivePlayer === null">Welcome to LCS!!</h1>
     <h1 *ngIf="currentActivePlayer != null">Welcome, {{currentActivePlayer.username}}.</h1>
-    <a (click)="startBattle(currentActivePlayer)">Battle</a>
+    <!-- <a (click)="startBattle(currentActivePlayer)">Battle</a> -->
   </div>
 </div>
 
-<div *ngIf="currentActivePlayer === null">
+<div *ngIf="currentActivePlayer === null; else showStats">
   <h2>Create Account</h2>
   <form class="newPlayer">
   <input class="form-control mr-sm-2" type="text" placeholder="New Name" #inputNewName>
@@ -31,4 +31,28 @@
   <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="newPlayer(inputNewName.value, inputNewPassword.value)">Create Account</button>
     </form>
 </div>
+<ng-template #showStats id="showStats">
+    <h2>{{currentActivePlayer.username}} Stats</h2>
+    <div><h4>Current level: {{currentActivePlayer.level}}</h4></div>
+    <div><h4>Idle Attack: {{currentActivePlayer.idleAttack}}</h4></div>
+    <div><h4>Base Click Damage: {{currentActivePlayer.attack}}</h4></div>
+    <div><h4>Crit Chance: {{currentActivePlayer.critChance}}%</h4></div>
+    <div><h4>Crit Damage: {{currentActivePlayer.critDamage}}%</h4></div>
+    <div><h4>Gold: {{currentActivePlayer.gold}}</h4></div>
+    <div><h4>Gold Rate: {{currentActivePlayer.goldRate}}</h4></div>
+
+    <a id="battleButton" (click)="startBattle(currentActivePlayer)">
+
+      <span class="text">Battle!</span>
+      
+      <span class="line -right"></span>
+      
+      <span class="line -top"></span>
+      
+      <span class="line -left"></span>
+      
+      <span class="line -bottom"></span>
+      
+    </a>
+  </ng-template>
 </body>
