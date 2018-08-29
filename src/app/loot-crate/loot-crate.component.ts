@@ -17,8 +17,11 @@ import { PlayerService } from '../player.service';
 })
 
 export class LootCrateComponent {
+  constructor(private playerService: PlayerService){}
+  watchClick = false;
+  shopLoot;
 
   shopClicked(){
-    
+     this.shopLoot = this.playerService.generateShopCrate();
   }
 }

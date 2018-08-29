@@ -12,6 +12,7 @@ export class PlayerService
   players: FirebaseListObservable<any[]>;
   generatedLootCrate;
   PlayerLootCrate;
+  generatedShopCrate;
   // : FirebaseListObservable<any[]>;
 
   constructor(private database: AngularFireDatabase)
@@ -68,6 +69,11 @@ generateLootCrate()
   this.PlayerLootCrate = this.generatedLootCrate;
   this.activePlayer.playerLoot.push(this.PlayerLootCrate);
   console.log('lootcrate made')
+}
+generateShopCrate()
+{
+  this.generatedShopCrate = new lootCrate('', null, null, null, null, null);
+  console.log(this.generatedShopCrate);
 }
   // updateplayers(player: Player) {
   //   this.activePlayer.update(player.$key,
