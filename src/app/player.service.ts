@@ -64,7 +64,7 @@ insert(player: Player) {
 }
 generateLootCrate()
 {
-  this.generatedLootCrate = new lootCrate('', null, null, null, null, null, null);
+  this.generatedLootCrate = new lootCrate('', null, null, null, null, null);
   this.PlayerLootCrate = this.generatedLootCrate;
   this.activePlayer.playerLoot.push(this.PlayerLootCrate);
   console.log('lootcrate made')
