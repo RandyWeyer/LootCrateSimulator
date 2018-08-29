@@ -57,7 +57,7 @@ export class LootCrateComponent implements OnInit {
     })
      this.shopLoot = this.playerService.generateShopCrate();
      var playerEntryInFireBase = this.playerService.getPlayerById(player.$key)
-     playerEntryInFireBase.update({shopLoot: this.shopLoot});
+     playerEntryInFireBase.update({playerLoot: this.shopLoot});
      this.watchClick = true;
   }
 }
