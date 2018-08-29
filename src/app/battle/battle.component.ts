@@ -54,9 +54,11 @@ export class BattleComponent implements OnInit {
     })
     console.log(this.currentLevelEnemy);
     this.percentHealth = 100;
+    this.idleClickDamage();
+    this.bossRegen();
   }
   enemySprite(){
-    let sprites = ["Castle_armour_03", "Castle_giant_01", "Castle_minotaur_01", "Castle_queen_02", "Celestial_angel_07", "Celestial_angel_09", "Celestial_angel_10", "Celestial_angel_14", "Celestial_angel_15", "Celestial_bird_14", "Celestial_boss_03", "Celestial_cloud_03", "Celestial_dragon_10", "Celestial_horse_01", "Celestial_giant_04", "Celestial_slime_04", "Desert_djinn_01", "Desert_golem_05", "Desert_skeleton_01", "Desert_skeleton_02", "Desert_skeleton_03", "Desert_skeleton_06", "Desert_undead_01", "Forest_dragon_01", "Forest_tree_02", "Grasslands_fairy_05", "Grasslands_ogre_02", "Graveyard_aberration_14", "Graveyard_demon_16", "Graveyard_ghost_16", "Graveyard_ghost_15", "Graveyard_golem_09", "Graveyard_golem_10", "Graveyard_skeleton_12", "Graveyard_snake_07", "Graveyard_undead_09", "Graveyard_vampire_06", "Graveyard_vampire_07", "Mountain_bear_03", "Mountain_dragon_03", "Mountain_wyvern_02", "Snow_dragon_04", "Snow_golem_06", "Snow_mage_02", "Snow_skeleton_07", "Snow_undead_02", "Snow_undead_03", "Tropical_dragon_06", "Tropical_skeleton_08", "Underworld_boss_02", "Underworld_cat_06", "Underworld_chimera_03", "Underworld_demon_03", "Underworld_demon_07", "Underworld_demon_08", "Underworld_dragon_08", "Underworld_flayer_01", "Underworld_ghoul_06", "Underworld_reaper_01", "Underworld_spider_05", "VX_Remix_robot_01", "VX_Remix_robot_02", "VX_Remix_robot_03", "VX_Remix_Statue_07"];
+    let sprites = ["Castle_armour_03", "Castle_giant_01", "Castle_minotaur_01", "Castle_queen_02", "Celestial_angel_07", "Celestial_angel_09", "Celestial_angel_10", "Celestial_angel_14", "Celestial_angel_15", "Celestial_bird_14", "Celestial_boss_03", "Celestial_cloud_03", "Celestial_dragon_10", "Celestial_horse_01", "Celestial_giant_04", "Celestial_slime_04", "Desert_djinn_01", "Desert_golem_05", "Desert_skeleton_01", "Desert_skeleton_02", "Desert_skeleton_03", "Desert_skeleton_06", "Desert_undead_01", "Forest_dragon_01", "Forest_tree_02", "Grasslands_fairy_05", "Grasslands_ogre_02", "Graveyard_aberration_14", "Graveyard_demon_16", "Graveyard_ghost_16", "Graveyard_ghost_15", "Graveyard_golem_09", "Graveyard_golem_10", "Graveyard_skeleton_12", "Graveyard_snake_07", "Graveyard_undead_09", "Graveyard_vampire_06", "Graveyard_vampire_07", "Mountain_bear_03", "Mountain_dragon_03", "Mountain_wyvern_02", "Snow_dragon_04", "Snow_golem_06", "Snow_mage_02", "Snow_skeleton_07", "Snow_undead_02", "Snow_undead_03", "Tropical_dragon_06", "Tropical_skeleton_08", "Underworld_boss_02", "Underworld_cat_06", "Underworld_chimera_03", "Underworld_demon_03", "Underworld_demon_07", "Underworld_demon_08", "Underworld_dragon_08", "Underworld_flayer_01", "Underworld_ghoul_06", "Underworld_reaper_01", "Underworld_spider_05", "VX_Remix_robot_01", "VX_Remix_robot_02", "VX_Remix_robot_03", "VX_Remix_statue_07"];
 
     return "../assets/Enemies/" + sprites[Math.floor(Math.random() * 64)] + ".png";
   }
@@ -112,26 +114,43 @@ export class BattleComponent implements OnInit {
     if(Math.floor(Math.random()*101) < player.critChance) {
       critMultiply = player.criticalDamage;
     }
-    if(player.attack > this.currentLevelEnemy.defense){
-      this.currentLevelEnemy.hitPoints = this.currentLevelEnemy.hitPoints - (player.attack - this.currentLevelEnemy.defense) * critMultiply;
-    } else if(player.attack <= this.currentLevelEnemy.defense){
-      this.currentLevelEnemy.hitPoints = this.currentLevelEnemy.hitPoints - 1;
+    if(Math.ceil(this.currentLevelEnemy.hitPoints) > 0){
+      if(player.attack > this.currentLevelEnemy.defense){
+        this.currentLevelEnemy.hitPoints = this.currentLevelEnemy.hitPoints - (player.attack - this.currentLevelEnemy.defense) * critMultiply;
+      } else if(player.attack <= this.currentLevelEnemy.defense){
+        this.currentLevelEnemy.hitPoints = this.currentLevelEnemy.hitPoints - 1;
+      }
+      this.percentHealth = Math.floor(this.currentLevelEnemy.hitPoints*100/this.enemyHitPoints(player));
     }
-    this.percentHealth = this.currentLevelEnemy.hitPoints*100/this.enemyHitPoints(player);
     if(Math.ceil(this.currentLevelEnemy.hitPoints) <= 0) {
       alert("winner");
     }
     // console.log(player.attack);
     })
   }
-  endRound() {
-    alert("winner");
+
+  idleClickDamage() {
+    this.currentActivePlayer.subscribe( player => {
+      const startInterval = setInterval(() => {
+        if(Math.ceil(this.currentLevelEnemy.hitPoints) > 0){
+          if(player.idleAttack > this.currentLevelEnemy.defense){
+            this.currentLevelEnemy.hitPoints = this.currentLevelEnemy.hitPoints - (player.idleAttack - this.currentLevelEnemy.defense);
+          } else if(player.idleAttack <= this.currentLevelEnemy.defense){
+            this.currentLevelEnemy.hitPoints = this.currentLevelEnemy.hitPoints - 1;
+          }
+          this.percentHealth = Math.floor(this.currentLevelEnemy.hitPoints*100/this.enemyHitPoints(player));
+        }
+      }, 1000);
+    })
   }
-
-  // RunGame() {
-  //   const startInterval = setInterval(() => {
-  //
-  //   }, 1000);
-  // }
-
+  bossRegen() {
+    this.currentActivePlayer.subscribe( player => {
+      const startInterval = setInterval(() => {
+        if(Math.ceil(this.currentLevelEnemy.hitPoints) > 0 && this.enemyHitPoints(player)-this.currentLevelEnemy.healthRegen >= Math.ceil(this.currentLevelEnemy.hitPoints)){
+          this.currentLevelEnemy.hitPoints = this.currentLevelEnemy.hitPoints + this.currentLevelEnemy.healthRegen;
+          this.percentHealth = Math.floor(this.currentLevelEnemy.hitPoints*100/this.enemyHitPoints(player));
+        }
+      }, 1000);
+    })
+  }
 }

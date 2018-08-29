@@ -5,7 +5,7 @@
     <div id="enemyBattler" class="enemyBattlerSpace col-md-6">
       <h3>{{currentLevelEnemy.name}}</h3>
       <div class="progress">
-        <div class="progress-bar" role="progressbar" [style.width]="percentHealth + '%'">{{percentHealth}}</div>
+        <div class="progress-bar" role="progressbar" [style.width]="percentHealth + '%'">{{currentLevelEnemy.hitPoints}}</div>
       </div>
       <img (click)="clickDamage()" id="enemySprite" [src]="currentLevelEnemy.sprite" alt=""/>
 
@@ -16,5 +16,5 @@
       <img id="userSprite" src="../assets/RandyRival.png" alt="" />
     </div>
   </div>
-  <!-- <button (click)="setLevel()" class="btn btn-success">TEST</button> -->
+  <button (click)="idleClickDamage()" class="btn btn-success">TEST</button>
 </div>
