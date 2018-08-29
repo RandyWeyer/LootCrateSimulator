@@ -1,16 +1,20 @@
-<div *ngIf="currentActivePlayer != null">
+<div class="container" *ngIf="currentActivePlayer != null">
   <h1>Level {{(currentActivePlayer | async )?.level}}</h1>
-<div class="row">
+  <div class="row">
 
-  <div id="enemyBattler" class="enemyBattlerSpace col-md-6">
-    <h3>{{currentLevelEnemy.name}}</h3>
-    <img id="enemySprite" src="../assets/currentLevelEnemy.sprite.png" alt=""/>
+    <div id="enemyBattler" class="enemyBattlerSpace col-md-6">
+      <h3>{{currentLevelEnemy.name}}</h3>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" [style.width]="percentHealth + '%'">{{percentHealth}}</div>
+      </div>
+      <img (click)="clickDamage()" id="enemySprite" [src]="currentLevelEnemy.sprite" alt=""/>
 
+    </div>
+    <!-- End of currentActivePlayer div -->
+    <div id="playerBattler" class="playerBattleSpace col-md-6">
+      <h3>{{(currentActivePlayer | async )?.username}}</h3>
+      <img id="userSprite" src="../assets/RandyRival.png" alt="" />
+    </div>
   </div>
-  <!-- End of currentActivePlayer div -->
-  <div id="playerBattler" class="playerBattleSpace col-md-6">
-    <h3>{{(currentActivePlayer | async )?.username}}</h3>
-    <img id="userSprite" src="../assets/RandyRival.png" alt="" />
-  </div>
-</div>
+  <!-- <button (click)="setLevel()" class="btn btn-success">TEST</button> -->
 </div>
