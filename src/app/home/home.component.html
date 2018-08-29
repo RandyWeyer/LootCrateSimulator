@@ -1,3 +1,4 @@
+<body ng-app="">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" routerLink="">LCS</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -8,6 +9,9 @@
         <input class="form-control mr-sm-2" type="password" placeholder="Password" #inputUserPassword>
         <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="logIn(inputUserName.value, inputUserPassword.value)">Log In</button>
       </form>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="click" (click)="logOut()">Log Out</button>
+      </form> 
     </div>
   </nav>
 
@@ -18,7 +22,8 @@
     <a (click)="startBattle(currentActivePlayer)">Battle</a>
   </div>
 </div>
-<div>
+
+<div *ngIf="currentActivePlayer === null">
   <h2>Create Account</h2>
   <form class="newPlayer">
   <input class="form-control mr-sm-2" type="text" placeholder="New Name" #inputNewName>
@@ -26,3 +31,4 @@
   <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="newPlayer(inputNewName.value, inputNewPassword.value)">Create Account</button>
     </form>
 </div>
+</body>

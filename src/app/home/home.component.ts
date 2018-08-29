@@ -21,13 +21,14 @@ export class HomeComponent implements OnInit {
 
   currentActivePlayer: Player = null;
   currentRoute: string = this.router.url;
-
+  
   constructor(private playerService: PlayerService, private router: Router) { }
 
   ngOnInit()
   {
     
   }
+  
   logIn(userName: string, userPassword: string)
   {
     let playerList = this.playerService.getPlayers();
@@ -38,17 +39,27 @@ export class HomeComponent implements OnInit {
           this.currentActivePlayer = player;
           this.playerService.setActivePlayer(player);
         }
+        
       });
     })
   }
+
+  logOut() {
+    this.currentActivePlayer = null;
+  }
+ 
   startBattle(activePlayer)
   {
     console.log(activePlayer);
     this.router.navigate(['battle', activePlayer.$key]);
   }
-  newPlayer(newName: string, newPassword: string)
+  newPlayer ( inputNewName, inputNewPassword, level, idleAttack, attack, critChance, criticalDamage, gold, goldRate, playerLoot, isActive)
   {
-
+    let userpassword = inputNewPassword;
+    let username = inputNewName;
+    let newPlayer: Player = new Player(username, userpassword, level, idleAttack, attack, critChance, criticalDamage, gold, goldRate, playerLoot, isActive);
+    this.playerService.insertPlayer(newPlayer)
+    this.currentActivePlayer = newPlayer;
+          this.playerService.setActivePlayer(newPlayer);
   }
-
 }
