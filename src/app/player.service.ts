@@ -12,16 +12,13 @@ export class PlayerService
   players: FirebaseListObservable<any[]>;
   generatedLootCrate;
   PlayerLootCrate;
-  // : FirebaseListObservable<any[]>;
+  newPlayer;
 
   constructor(private database: AngularFireDatabase)
   {
-    this.player = database.list('player');
+    this.players = database.list('players');
   }
-  // getPlayer()
-  // {
-  //   return this.player;
-  // }
+  
 getPlayerById(playerId: string)
 {
   return this.database.object('players/' + playerId);
@@ -34,34 +31,13 @@ getPlayerById(playerId: string)
   {
     return this.activePlayer;
   }
-  setBattlePlayer(battle)
-  {
-    this.battlePlayer = battle;
-  }
-  getBattlePlayer()
-  {
-    return this.battlePlayer;
-  }
 // }
 getPlayers() {
   this.activePlayer = this.database.list('players');
   return this.activePlayer;
 }
 
-insert(player: Player) {
-  this.activePlayer.push({
-    username : player.username,
-    userpassword : player.userpassword,
-    level : player.level,
-    idleAttack : player.idleAttack,
-    attack : player.attack,
-    critChance : player.critChance,
-    criticalDamage : player.criticalDamage,
-    gold : player.gold,
-    goldRate : player.goldRate,
-    playerLoot: player.playerLoot
-  });
-}
+
 generateLootCrate()
 {
   this.generatedLootCrate = new lootCrate('', null, null, null, null, null);
@@ -69,21 +45,12 @@ generateLootCrate()
   this.activePlayer.playerLoot.push(this.PlayerLootCrate);
   console.log('lootcrate made')
 }
-  // updateplayers(player: Player) {
-  //   this.activePlayer.update(player.$key,
-  //   {
-  //     username : player.username,
-  //     userpassword : player.userpassword,
-  //     level : player.level,
-  //     idleAttack : player.idleAttack,
-  //     attack : player.attack,
-  //     critChance : player.critChance,
-  //     criticalDamage : player.criticalDamage,
-  //     gold : player.gold,
-  //     goldRate : player.goldRate
-  //   });
-  // }
-
+  insertPlayer(newPlayer) {
+    {      
+      this.players.push(newPlayer)
+    };
+  }
+ 
   deleteplayers($key: string) {
     this.activePlayer.remove($key);
   }
