@@ -18,5 +18,7 @@ import { PlayerService } from '../player.service';
 
 export class LootCrateComponent {
 
-
+  shopClicked(){
+    
+  }
 }
