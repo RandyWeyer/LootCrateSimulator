@@ -28,6 +28,7 @@ export class LootCrateComponent implements OnInit {
   activePlayerId: string;
   currentPlayer;
   gameData;
+  lootArray = [];
 
   constructor(
   private playerService: PlayerService,
@@ -56,8 +57,9 @@ export class LootCrateComponent implements OnInit {
       player = foundplayer;
     })
      this.shopLoot = this.playerService.generateShopCrate();
+     this.lootArray.push(this.shopLoot)
      var playerEntryInFireBase = this.playerService.getPlayerById(player.$key)
-     playerEntryInFireBase.update({playerLoot: this.shopLoot});
+     playerEntryInFireBase.update({playerLoot: this.lootArray});
      this.watchClick = true;
   }
 }
