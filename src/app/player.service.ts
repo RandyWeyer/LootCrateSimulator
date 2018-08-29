@@ -13,16 +13,14 @@ export class PlayerService
   generatedLootCrate;
   PlayerLootCrate;
   generatedShopCrate;
-  // : FirebaseListObservable<any[]>;
+  newPlayer;
+
 
   constructor(private database: AngularFireDatabase)
   {
-    this.player = database.list('player');
+    this.players = database.list('players');
   }
-  // getPlayer()
-  // {
-  //   return this.player;
-  // }
+
 getPlayerById(playerId: string)
 {
   return this.database.object('players/' + playerId);
@@ -34,14 +32,6 @@ getPlayerById(playerId: string)
   getActivePlayer()
   {
     return this.activePlayer;
-  }
-  setBattlePlayer(battle)
-  {
-    this.battlePlayer = battle;
-  }
-  getBattlePlayer()
-  {
-    return this.battlePlayer;
   }
 // }
 getPlayers() {
@@ -73,20 +63,12 @@ generateShopCrate()
   this.generatedShopCrate = new lootCrate('', null, null, null, null, null, '');
   return this.generatedShopCrate;
 }
-  // updateplayers(player: Player) {
-  //   this.activePlayer.update(player.$key,
-  //   {
-  //     username : player.username,
-  //     userpassword : player.userpassword,
-  //     level : player.level,
-  //     idleAttack : player.idleAttack,
-  //     attack : player.attack,
-  //     critChance : player.critChance,
-  //     criticalDamage : player.criticalDamage,
-  //     gold : player.gold,
-  //     goldRate : player.goldRate
-  //   });
-  // }
+
+  insertPlayer(newPlayer) {
+    {
+      this.players.push(newPlayer)
+    };
+  }
 
   deleteplayers($key: string) {
     this.activePlayer.remove($key);

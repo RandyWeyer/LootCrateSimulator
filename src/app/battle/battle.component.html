@@ -1,20 +1,30 @@
-<div class="container" *ngIf="currentActivePlayer != null">
+<div class="container" [style.background-image]="'url(' + backgroundImage + ')'" *ngIf="currentActivePlayer != null">
   <h1>Level {{(currentActivePlayer | async )?.level}}</h1>
   <div class="row">
-
-    <div id="enemyBattler" class="enemyBattlerSpace col-md-6">
+  <div id="enemyBattler" class="enemyBattlerSpace col-md-6">
+    <div class="card">
+    <div class="card-body">
       <h3>{{currentLevelEnemy.name}}</h3>
       <div class="progress">
-        <div class="progress-bar" role="progressbar" [style.width]="percentHealth + '%'">{{percentHealth}}</div>
+        <div class="progress-bar" role="progressbar" [style.width]="percentHealth + '%'">{{currentLevelEnemy.hitPoints}}</div>
       </div>
-      <img (click)="clickDamage()" id="enemySprite" [src]="currentLevelEnemy.sprite" alt=""/>
-
     </div>
+  </div>
+    <img (click)="clickDamage()" id="enemySprite" [class]="enemyEntry()" [src]="currentLevelEnemy.sprite" alt=""/>
+
+</div>
     <!-- End of currentActivePlayer div -->
+
     <div id="playerBattler" class="playerBattleSpace col-md-6">
-      <h3>{{(currentActivePlayer | async )?.username}}</h3>
+      <div class="card">
+        <div class="card-body">
+          <h3>{{(currentActivePlayer | async )?.username}}</h3>
+          <h4>GOLD: {{(currentActivePlayer | async )?.gold}}</h4>
+        </div>
+      </div>
       <img id="userSprite" src="../assets/RandyRival.png" alt="" />
     </div>
   </div>
-  <!-- <button (click)="setLevel()" class="btn btn-success">TEST</button> -->
+  <button (click)="idleClickDamage()" class="btn btn-success">TEST</button>
+  <button routerLink="" class="btn btn-primary">HOME</button>
 </div>

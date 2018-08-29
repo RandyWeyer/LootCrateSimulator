@@ -1,3 +1,4 @@
+<body ng-app="">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" routerLink="">LCS</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -8,6 +9,9 @@
         <input class="form-control mr-sm-2" type="password" placeholder="Password" #inputUserPassword>
         <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="logIn(inputUserName.value, inputUserPassword.value)">Log In</button>
       </form>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="click" (click)="logOut()">Log Out</button>
+      </form> 
     </div>
   </nav>
 
@@ -19,7 +23,8 @@
     <button (click)="goToCrates(currentActivePlayer)" class="btn btn-warning">Loot Crate</button>
   </div>
 </div>
-<div>
+
+<div *ngIf="currentActivePlayer === null; else showStats">
   <h2>Create Account</h2>
   <form class="newPlayer">
   <input class="form-control mr-sm-2" type="text" placeholder="New Name" #inputNewName>
@@ -27,3 +32,28 @@
   <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="newPlayer(inputNewName.value, inputNewPassword.value)">Create Account</button>
     </form>
 </div>
+<ng-template #showStats id="showStats">
+    <h2>{{currentActivePlayer.username}} Stats</h2>
+    <div><h4>Current level: {{currentActivePlayer.level}}</h4></div>
+    <div><h4>Idle Attack: {{currentActivePlayer.idleAttack}}</h4></div>
+    <div><h4>Base Click Damage: {{currentActivePlayer.attack}}</h4></div>
+    <div><h4>Crit Chance: {{currentActivePlayer.critChance}}%</h4></div>
+    <div><h4>Crit Damage: {{currentActivePlayer.critDamage}}%</h4></div>
+    <div><h4>Gold: {{currentActivePlayer.gold}}</h4></div>
+    <div><h4>Gold Rate: {{currentActivePlayer.goldRate}}</h4></div>
+
+    <a id="battleButton" (click)="startBattle(currentActivePlayer)">
+
+      <span class="text">Battle!</span>
+      
+      <span class="line -right"></span>
+      
+      <span class="line -top"></span>
+      
+      <span class="line -left"></span>
+      
+      <span class="line -bottom"></span>
+      
+    </a>
+  </ng-template>
+</body>
