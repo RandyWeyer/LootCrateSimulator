@@ -46,20 +46,28 @@ export class LootCrateComponent implements OnInit {
         this.activePlayerId = urlParameters['id'];
       })
       this.currentActivePlayer = this.playerService.getPlayerById(this.activePlayerId);
-      this.playerService.setActivePlayer(this.currentActivePlayer);
-      console.log(this.currentActivePlayer);
+      this.currentActivePlayer.subscribe(player => {
+        this.playerService.setActivePlayer(player);
+      })
   }
 
+  homeClicked(activePlayer)
+  {
+    this.currentActivePlayer.subscribe( player =>{
+      this.router.navigate(['home', player.$key]);
+    })
+  }
 
   shopClicked(){
     var player;
     this.currentActivePlayer.subscribe(foundplayer => {
       player = foundplayer;
     })
+    this.lootArray = player.playerLoot;
      this.shopLoot = this.playerService.generateShopCrate();
-     this.lootArray.push(this.shopLoot)
+     this.lootArray.push(this.shopLoot);
      var playerEntryInFireBase = this.playerService.getPlayerById(player.$key)
      playerEntryInFireBase.update({playerLoot: this.lootArray});
-     this.watchClick = true;
+     // this.watchClick = true;
   }
 }

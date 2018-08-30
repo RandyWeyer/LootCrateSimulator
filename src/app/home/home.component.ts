@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { Player } from '../models/player.model';
 import { PlayerService } from './../player.service';
 import { AppComponent } from '../app.component'
+import { ActivatedRoute, Params } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -19,14 +21,23 @@ import { AppComponent } from '../app.component'
 })
 export class HomeComponent implements OnInit {
 
-  currentActivePlayer: Player = null;
+  currentActivePlayer;
+  ActivePlayer;
+  activePlayerId: string;
   currentRoute: string = this.router.url;
-
-  constructor(private playerService: PlayerService, private router: Router) { }
+  constructor(private playerService: PlayerService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit()
   {
-
+    console.log(this.router.url);
+    if(this.router.url === "/"){
+      this.currentActivePlayer = null;
+    } else {
+      this.route.params.forEach((urlParameters) => {
+        this.activePlayerId = urlParameters['id'];
+    })
+    this.currentActivePlayer = this.playerService.getPlayerById(this.activePlayerId);
+  }
   }
 
   logIn(userName: string, userPassword: string)
@@ -36,26 +47,33 @@ export class HomeComponent implements OnInit {
       players.forEach(player => {
         if(userName === player.username && userPassword === player.userpassword)
         {
+          if(this.router.url === "/"){
+            this.router.navigate(['home', player.$key])
+          }
           this.currentActivePlayer = player;
           this.playerService.setActivePlayer(player);
         }
-
       });
     })
+
   }
 
   logOut() {
+    this.router.navigate(['']);
     this.currentActivePlayer = null;
   }
 
-  startBattle(activePlayer)
+  startBattle()
   {
-    console.log(activePlayer);
-    this.router.navigate(['battle', activePlayer.$key]);
+    this.currentActivePlayer.subscribe( player =>{
+      this.router.navigate(['battle', player.$key]);
+    })
   }
-  goToCrates(activePlayer)
+  goToCrates()
   {
-        this.router.navigate(['lootBox', activePlayer.$key]);
+    this.currentActivePlayer.subscribe( player =>{
+      this.router.navigate(['lootBox', player.$key]);
+    })
   }
   newPlayer ( inputNewName, inputNewPassword, level, idleAttack, attack, critChance, criticalDamage, gold, goldRate, playerLoot, isActive)
   {
@@ -64,6 +82,6 @@ export class HomeComponent implements OnInit {
     let newPlayer: Player = new Player(username, userpassword, level, idleAttack, attack, critChance, criticalDamage, gold, goldRate, playerLoot, isActive);
     this.playerService.insertPlayer(newPlayer)
     this.currentActivePlayer = newPlayer;
-          this.playerService.setActivePlayer(newPlayer);
+    this.playerService.setActivePlayer(newPlayer);
   }
 }

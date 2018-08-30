@@ -7,6 +7,10 @@ import { LootCrateComponent } from './loot-crate/loot-crate.component';
 const appRoutes: Routes =
 [
     {
+        path: "home/:id",
+        component: HomeComponent
+    },
+    {
         path: "",
         component: HomeComponent
     },

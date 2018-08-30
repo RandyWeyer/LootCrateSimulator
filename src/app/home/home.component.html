@@ -11,18 +11,17 @@
       </form>
       <form class="form-inline my-2 my-lg-0">
         <button class="btn btn-outline-danger my-2 my-sm-0" type="click" (click)="logOut()">Log Out</button>
-      </form> 
+      </form>
     </div>
   </nav>
 
 <div class="container">
   <div>
     <h1 *ngIf="currentActivePlayer === null">Welcome to LCS!!</h1>
-    <h1 *ngIf="currentActivePlayer != null">Welcome, {{currentActivePlayer.username}}.</h1>
-    <button (click)="startBattle(currentActivePlayer)" class="btn btn-danger">Battle</button>
-    <button (click)="goToCrates(currentActivePlayer)" class="btn btn-warning">Loot Crate</button>
+    <h1 *ngIf="currentActivePlayer != null">Welcome, {{(currentActivePlayer | async)?.username}}.</h1>
+    <button (click)="startBattle()" class="btn btn-danger">Battle</button>
+    <button (click)="goToCrates()" class="btn btn-warning">Loot Crate</button>
   </div>
-</div>
 
 <div *ngIf="currentActivePlayer === null; else showStats">
   <h2>Create Account</h2>
@@ -33,27 +32,28 @@
     </form>
 </div>
 <ng-template #showStats id="showStats">
-    <h2>{{currentActivePlayer.username}} Stats</h2>
-    <div><h4>Current level: {{currentActivePlayer.level}}</h4></div>
-    <div><h4>Idle Attack: {{currentActivePlayer.idleAttack}}</h4></div>
-    <div><h4>Base Click Damage: {{currentActivePlayer.attack}}</h4></div>
-    <div><h4>Crit Chance: {{currentActivePlayer.critChance}}%</h4></div>
-    <div><h4>Crit Damage: {{currentActivePlayer.critDamage}}%</h4></div>
-    <div><h4>Gold: {{currentActivePlayer.gold}}</h4></div>
-    <div><h4>Gold Rate: {{currentActivePlayer.goldRate}}</h4></div>
+    <h2>{{(currentActivePlayer | async)?.username}} Stats</h2>
+    <div><h4>Current level: {{(currentActivePlayer | async)?.level}}</h4></div>
+    <div><h4>Idle Attack: {{(currentActivePlayer | async)?.idleAttack}}</h4></div>
+    <div><h4>Base Click Damage: {{(currentActivePlayer | async)?.attack}}</h4></div>
+    <div><h4>Crit Chance: {{(currentActivePlayer | async)?.critChance}}%</h4></div>
+    <div><h4>Crit Damage: {{(currentActivePlayer | async)?.critDamage}}%</h4></div>
+    <div><h4>Gold: {{(currentActivePlayer | async)?.gold}}</h4></div>
+    <div><h4>Gold Rate: {{(currentActivePlayer | async)?.goldRate}}</h4></div>
 
     <a id="battleButton" (click)="startBattle(currentActivePlayer)">
 
       <span class="text">Battle!</span>
-      
+
       <span class="line -right"></span>
-      
+
       <span class="line -top"></span>
-      
+
       <span class="line -left"></span>
-      
+
       <span class="line -bottom"></span>
-      
+
     </a>
   </ng-template>
+</div>
 </body>

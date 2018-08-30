@@ -3,6 +3,7 @@
   <h1>Loot Crate</h1>
   <button (click)="shopClicked()" class="btn btn-primary">Shop</button>
   <button class="btn btn-primary">Inventory</button>
+  <button (click)="homeClicked(currentActivePlayer)" class="btn btn-primary">Home</button>
     <div *ngIf="watchClick===true">
       {{shopLoot.name}}
     </div>
