@@ -18,3 +18,7 @@
   background-repeat: no-repeat;
   background-size: contain;
 }*/
+.notEnough{
+  color: #dc3545;
+  float:right;
+}

@@ -220,4 +220,11 @@ export class BattleComponent implements OnInit {
       this.router.navigate(['home', player.$key]);
     })
   }
+  resetToBuy(){
+    this.currentActivePlayer.subscribe( player =>{
+      var playerEntryInFirebase = this.playerService.getPlayerById(player.$key);
+      playerEntryInFirebase.update({level: 0});
+      this.router.navigate(['lootBox', player.$key]);
+    })
+  }
 }

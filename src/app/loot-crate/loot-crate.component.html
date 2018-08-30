@@ -29,7 +29,7 @@
   <div *ngIf="shopOpen" class="Shop">
     <h3>Shop</h3>
     <div class="shopCrates">
-      <h4 *ngIf="notEnoughGold" class="notEnough"></h4>
+      <h4 *ngIf="notEnoughGold" class="notEnough">Not enough Gold!</h4>
       <h4>Gold: {{(currentActivePlayer | async)?.gold}}</h4>
       <div class="card">
         <div class="card-body">
