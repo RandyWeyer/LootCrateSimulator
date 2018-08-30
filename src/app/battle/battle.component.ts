@@ -196,7 +196,7 @@ export class BattleComponent implements OnInit {
     })
   }
   goldReceived(currentPlayer){
-    let addedGold = 10 + (Math.pow(5, (Math.floor(currentPlayer.level/10))));
+    let addedGold = 50 + (Math.pow(5, (Math.floor(currentPlayer.level/10))));
     if(this.enemyIsBoss(currentPlayer)){
       addedGold*=10;
     }

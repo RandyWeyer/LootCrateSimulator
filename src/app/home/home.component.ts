@@ -89,9 +89,8 @@ export class HomeComponent implements OnInit {
     let userpassword = inputNewPassword;
     let username = inputNewName;
     let newPlayer: Player = new Player(username, userpassword, level, idleAttack, attack, critChance, criticalDamage, gold, goldRate, playerLoot, isActive);
-    this.playerService.insertPlayer(newPlayer)
-    this.currentActivePlayer = newPlayer;
-    this.playerService.setActivePlayer(newPlayer);
+    this.playerService.insertPlayer(newPlayer);
+
   }
   hideForm(){
     if(!this.loggedIn){
