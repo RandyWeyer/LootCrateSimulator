@@ -30,6 +30,9 @@ export class LootCrateComponent implements OnInit {
   gameData;
   lootArray = [];
   lootCrates: FirebaseObjectObservable<any[]>;
+  inventoryOpen: boolean = false;
+  shopOpen: boolean = false;
+  notEnoughGold: boolean = false;
 
   constructor(
   private playerService: PlayerService,
@@ -60,32 +63,82 @@ export class LootCrateComponent implements OnInit {
     })
   }
 
-  shopClicked(){
+  shopClicked(buyAmount, price){
+    var player;
+    this.currentActivePlayer.subscribe(foundplayer => {
+      player = foundplayer;
+    })
+    if(player.gold < buyAmount*price) {
+      this.notEnoughGold = true;
+    } else {
+      this.notEnoughGold = false;
+      this.lootArray = player.playerLoot;
+      for(let i = 0; i < buyAmount; i ++){
+        this.shopLoot = this.playerService.generateShopCrate();
+        this.lootArray.push(this.shopLoot);
+      }
+      let playerGold = player.gold - buyAmount*price;
+      var playerEntryInFireBase = this.playerService.getPlayerById(player.$key)
+      playerEntryInFireBase.update({playerLoot: this.lootArray, gold: playerGold});
+      // this.watchClick = true;
+    }
+  }
+
+  openBox(currentLootCrate){
     var player;
     this.currentActivePlayer.subscribe(foundplayer => {
       player = foundplayer;
     })
     this.lootArray = player.playerLoot;
-     this.shopLoot = this.playerService.generateShopCrate();
-     this.lootArray.push(this.shopLoot);
-     var playerEntryInFireBase = this.playerService.getPlayerById(player.$key)
-     playerEntryInFireBase.update({playerLoot: this.lootArray});
-     // this.watchClick = true;
-  }
-
-  openBox(currentLootCrate){
-    this.currentActivePlayer.subscribe(player => {
-      let newInventory: LootCrate[];
-      player.playerLoot.forEach(lootCrate =>{
-
-        // if(currentLootCrate.attack === lootCrate.attack && currentLootCrate.idleAttack === lootCrate.idleAttack && currentLootCrate.critChance === lootCrate.critChance && currentLootCrate.criticalDamage === lootCrate.criticalDamage && currentLootCrate.goldRate === lootCrate.goldRate){
-        //   console.log(lootCrate);
-        // }
-      })
+    var crateIndex = this.lootArray.length;
+    this.lootArray.forEach( lootCrate => {
+      if(currentLootCrate.attack === lootCrate.attack && currentLootCrate.idleAttack === lootCrate.idleAttack && currentLootCrate.critChance === lootCrate.critChance && currentLootCrate.criticalDamage === lootCrate.criticalDamage && currentLootCrate.goldRate === lootCrate.goldRate){
+        crateIndex = this.lootArray.indexOf(lootCrate);
+      }
     })
+    if(crateIndex != this.lootArray.length){
+      console.log(this.lootArray[crateIndex].attack)
+      let newAttack = player.attack;
+      let newIdleAttack = player.idleAttack;
+      let newCritChance = player.critChance;
+      let newCriticalDamage = player.criticalDamage;
+      let newGoldRate = player.goldRate;
 
+      if(this.lootArray[crateIndex].attack != null){
+        newAttack = player.attack + this.lootArray[crateIndex].attack;
+      }
+      if(this.lootArray[crateIndex].idleAttack != null){
+        newIdleAttack = player.idleAttack + this.lootArray[crateIndex].idleAttack;
+      }
+      if(this.lootArray[crateIndex].critChance != null){
+        newCritChance = player.critChance + this.lootArray[crateIndex].critChance;
+      }
+      if(this.lootArray[crateIndex].criticalDamage != null){
+        newCriticalDamage = player.criticalDamage + this.lootArray[crateIndex].criticalDamage;
+      }
+      if(this.lootArray[crateIndex].goldRate != null){
+        newGoldRate = player.goldRate + this.lootArray[crateIndex].goldRate;
+      }
+      this.lootArray.splice(crateIndex, 1);
+
+      var playerEntryInFireBase = this.playerService.getPlayerById(player.$key);
+      playerEntryInFireBase.update({playerLoot: this.lootArray, attack: newAttack, idleAttack: newIdleAttack, critChance: newCritChance, criticalDamage: newCriticalDamage, goldRate: newGoldRate});
+    }
+  }
+  toggleShop(){
+    this.shopOpen = !this.shopOpen;
+    this.inventoryOpen = false;
+  }
+  toggleInventory(){
+    this.inventoryOpen = !this.inventoryOpen;
+    this.shopOpen = false;
   }
   showLoot(currentLootCrate){
 
   }
+  // cardStyle(currentCrate){
+  //   if(currentCrate === 4){
+  //     return "bg-success";
+  //   }
+  // }
 }

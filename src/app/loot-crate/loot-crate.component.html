@@ -2,15 +2,15 @@
 <div class="container">
 
   <h1>Loot Crate</h1>
-  <button (click)="shopClicked()" class="btn btn-primary">Shop</button>
-  <button class="btn btn-primary">Inventory</button>
+  <button (click)="toggleShop()" class="btn btn-primary">Shop</button>
+  <button (click)="toggleInventory()" class="btn btn-primary">Inventory</button>
   <button (click)="homeClicked(currentActivePlayer)" class="btn btn-primary">Home</button>
     <div *ngIf="watchClick===true">
       {{shopLoot.name}}
     </div>
-  <div class="inventory">
+  <div *ngIf="inventoryOpen" class="inventory">
     <h3>Inventory</h3>
-    <div class="row">
+    <div class="row inventoryCrates">
       <div class="card col-md-3" *ngFor="let lootCrate of lootCrates | async">
         <div class="card-body">
           <h4 class="card-title">{{lootCrate.name}}</h4>
@@ -22,6 +22,45 @@
             <div *ngIf="lootCrate.criticalDamage">CRITICAL DAMAGE: +{{lootCrate.criticalDamage}}</div>
             <div *ngIf="lootCrate.goldRate">GOLD RATE: +{{lootCrate.goldRate}}</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="shopOpen" class="Shop">
+    <h3>Shop</h3>
+    <div class="shopCrates">
+      <h4 *ngIf="notEnoughGold" class="notEnough"></h4>
+      <h4>Gold: {{(currentActivePlayer | async)?.gold}}</h4>
+      <div class="card">
+        <div class="card-body">
+          <button (click)="shopClicked(1, 500)" class="btn btn-danger">BUY</button>
+          <h4 class="card-title">Loot Crate (x1)</h4>
+          <h5>Price: 500</h5>
+          <div class="card-body"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <button (click)="shopClicked(10, 400)" class="btn btn-danger">BUY</button>
+          <h4 class="card-title">Loot Crate (x10)</h4>
+          <h5>Price: 4000</h5>
+          <div class="card-body"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <button (click)="shopClicked(25, 300)" class="btn btn-danger">BUY</button>
+          <h4 class="card-title">Loot Crate (x25)</h4>
+          <h5>Price: 7500</h5>
+          <div class="card-body"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <button (click)="shopClicked(100, 250)" class="btn btn-danger">BUY</button>
+          <h4 class="card-title">Loot Crate (x100)</h4>
+          <h5>Price: 25000</h5>
+          <div class="card-body"></div>
         </div>
       </div>
     </div>
