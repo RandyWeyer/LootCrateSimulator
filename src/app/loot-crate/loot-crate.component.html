@@ -2,9 +2,10 @@
 <div class="container">
 
   <h1>Loot Crate</h1>
-  <button (click)="toggleShop()" class="btn btn-primary">Shop</button>
-  <button (click)="toggleInventory()" class="btn btn-primary">Inventory</button>
+  <button (click)="toggleShop()" class="btn btn-warning">Shop</button>
+  <button (click)="toggleInventory()" class="btn btn-warning">Inventory</button>
   <button (click)="homeClicked(currentActivePlayer)" class="btn btn-primary">Home</button>
+  <button (click)="restart()" class="btn btn-success">Re-Adventure!!!1</button>
     <div *ngIf="watchClick===true">
       {{shopLoot.name}}
     </div>

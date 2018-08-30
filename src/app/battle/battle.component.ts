@@ -150,8 +150,6 @@ export class BattleComponent implements OnInit {
       var playerEntryInFirebase = this.playerService.getPlayerById(localUpdatedPlayer.$key);
       playerEntryInFirebase.update({level: localUpdatedPlayer.level, gold: this.goldReceived(player)});
       this.router.navigate(['battle', player.$key]);
-
-
   }
 
   idleClickDamage() {
@@ -220,11 +218,18 @@ export class BattleComponent implements OnInit {
       this.router.navigate(['home', player.$key]);
     })
   }
+  confirmToBuy(){
+    if(confirm("Are you sure you want to go buy? Your level will reset to 1.")){
+      this.resetToBuy();
+    };
+  }
   resetToBuy(){
-    this.currentActivePlayer.subscribe( player =>{
+    var player;
+    this.currentActivePlayer.subscribe( foundplayer => {
+      player = foundplayer;
+    })
       var playerEntryInFirebase = this.playerService.getPlayerById(player.$key);
       playerEntryInFirebase.update({level: 0});
       this.router.navigate(['lootBox', player.$key]);
-    })
   }
 }

@@ -4,56 +4,54 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="User Name" #inputUserName>
-        <input class="form-control mr-sm-2" type="password" placeholder="Password" #inputUserPassword>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="logIn(inputUserName.value, inputUserPassword.value)">Log In</button>
-      </form>
+      <div *ngIf="currentActivePlayer === null" class="headerNav">Welcome to LCS!!</div>
+      <div *ngIf="currentActivePlayer != null" class="headerNav">Welcome, {{(currentActivePlayer | async)?.username}}</div>
+      <div *ngIf="currentActivePlayer === null; else logged">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="User Name" #inputUserName>
+          <input class="form-control mr-sm-2" type="password" placeholder="Password" #inputUserPassword>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="logIn(inputUserName.value, inputUserPassword.value)">Log In</button>
+        </form>
+      </div>
+      <ng-template #logged>
       <form class="form-inline my-2 my-lg-0">
         <button class="btn btn-outline-danger my-2 my-sm-0" type="click" (click)="logOut()">Log Out</button>
       </form>
+    </ng-template>
     </div>
   </nav>
 
 <div class="container">
-  <div>
-    <h1 *ngIf="currentActivePlayer === null">Welcome to LCS!!</h1>
-    <h1 *ngIf="currentActivePlayer != null">Welcome, {{(currentActivePlayer | async)?.username}}.</h1>
-    <button (click)="startBattle()" class="btn btn-danger">Battle</button>
-    <button (click)="goToCrates()" class="btn btn-warning">Loot Crate</button>
+  <div class="stats">
+    <div class="card">
+      <div class="card-body" *ngIf="currentActivePlayer === null; else showStats">
+        <h2>Create Account</h2>
+        <form class="newPlayer">
+          <input class="form-control mr-sm-2" type="text" placeholder="New Name" #inputNewName>
+          <input class="form-control mr-sm-2" type="text" placeholder="New Password" #inputNewPassword>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="newPlayer(inputNewName.value, inputNewPassword.value)">Create Account</button>
+        </form>
+      </div>
+      <ng-template #showStats id="showStats">
+        <h2 class="card-heading">{{(currentActivePlayer | async)?.username}} Stats</h2>
+        <div><h4>Current level: {{(currentActivePlayer | async)?.level}}</h4></div>
+        <div><h4>Idle Attack: {{(currentActivePlayer | async)?.idleAttack}}</h4></div>
+        <div><h4>Base Click Damage: {{(currentActivePlayer | async)?.attack}}</h4></div>
+        <div><h4>Crit Chance: {{(currentActivePlayer | async)?.critChance}}%</h4></div>
+        <div><h4>Crit Damage: {{(currentActivePlayer | async)?.criticalDamage}}%</h4></div>
+        <div><h4>Gold: {{(currentActivePlayer | async)?.gold}}</h4></div>
+        <div><h4>Gold Rate: {{(currentActivePlayer | async)?.goldRate}}</h4></div>
+      </ng-template>
+    </div>
+    <div class="playButton">
+      <a id="battleButton" (click)="play()">
+        <span class="text">PLAY!</span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </a>
+    </div>
   </div>
-
-<div *ngIf="currentActivePlayer === null; else showStats">
-  <h2>Create Account</h2>
-  <form class="newPlayer">
-  <input class="form-control mr-sm-2" type="text" placeholder="New Name" #inputNewName>
-  <input class="form-control mr-sm-2" type="text" placeholder="New Password" #inputNewPassword>
-  <button class="btn btn-outline-success my-2 my-sm-0" type="click" (click)="newPlayer(inputNewName.value, inputNewPassword.value)">Create Account</button>
-    </form>
-</div>
-<ng-template #showStats id="showStats">
-    <h2>{{(currentActivePlayer | async)?.username}} Stats</h2>
-    <div><h4>Current level: {{(currentActivePlayer | async)?.level}}</h4></div>
-    <div><h4>Idle Attack: {{(currentActivePlayer | async)?.idleAttack}}</h4></div>
-    <div><h4>Base Click Damage: {{(currentActivePlayer | async)?.attack}}</h4></div>
-    <div><h4>Crit Chance: {{(currentActivePlayer | async)?.critChance}}%</h4></div>
-    <div><h4>Crit Damage: {{(currentActivePlayer | async)?.criticalDamage}}%</h4></div>
-    <div><h4>Gold: {{(currentActivePlayer | async)?.gold}}</h4></div>
-    <div><h4>Gold Rate: {{(currentActivePlayer | async)?.goldRate}}</h4></div>
-
-    <a id="battleButton" (click)="startBattle(currentActivePlayer)">
-
-      <span class="text">Battle!</span>
-
-      <span class="line -right"></span>
-
-      <span class="line -top"></span>
-
-      <span class="line -left"></span>
-
-      <span class="line -bottom"></span>
-
-    </a>
-  </ng-template>
-</div>
+  </div>
 </body>

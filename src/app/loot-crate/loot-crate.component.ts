@@ -33,6 +33,7 @@ export class LootCrateComponent implements OnInit {
   inventoryOpen: boolean = false;
   shopOpen: boolean = false;
   notEnoughGold: boolean = false;
+  currentLevel: number = 1;
 
   constructor(
   private playerService: PlayerService,
@@ -141,4 +142,14 @@ export class LootCrateComponent implements OnInit {
   //     return "bg-success";
   //   }
   // }
+  restart(){
+    var player;
+    this.currentActivePlayer.subscribe( foundplayer => {
+      player = foundplayer;
+    })
+      var playerEntryInFirebase = this.playerService.getPlayerById(player.$key);
+      playerEntryInFirebase.update({level: this.currentLevel});
+      console.log("hello");
+      this.router.navigate(['battle', player.$key]);
+  }
 }

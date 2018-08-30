@@ -26,10 +26,9 @@ export class HomeComponent implements OnInit {
   activePlayerId: string;
   currentRoute: string = this.router.url;
   constructor(private playerService: PlayerService, private router: Router,private route: ActivatedRoute) { }
-
+  loggedIn: boolean = false;
   ngOnInit()
   {
-    console.log(this.router.url);
     if(this.router.url === "/"){
       this.currentActivePlayer = null;
     } else {
@@ -52,6 +51,7 @@ export class HomeComponent implements OnInit {
           }
           this.currentActivePlayer = player;
           this.playerService.setActivePlayer(player);
+          this.loggedIn = true;
         }
       });
     })
@@ -61,15 +61,24 @@ export class HomeComponent implements OnInit {
   logOut() {
     this.router.navigate(['']);
     this.currentActivePlayer = null;
+    this.loggedIn = false;
   }
-
-  startBattle()
+  play(){
+    this.currentActivePlayer.subscribe(player => {
+      if(player.level <= 0){
+        this.router.navigate(['lootBox', player.$key]);
+      } else if (player.level > 0) {
+        this.router.navigate(['battle', player.$key]);
+      }
+    })
+  }
+  startBattle(player)
   {
     this.currentActivePlayer.subscribe( player =>{
       this.router.navigate(['battle', player.$key]);
     })
   }
-  goToCrates()
+  goToCrates(player)
   {
     this.currentActivePlayer.subscribe( player =>{
       this.router.navigate(['lootBox', player.$key]);
@@ -83,5 +92,12 @@ export class HomeComponent implements OnInit {
     this.playerService.insertPlayer(newPlayer)
     this.currentActivePlayer = newPlayer;
     this.playerService.setActivePlayer(newPlayer);
+  }
+  hideForm(){
+    if(!this.loggedIn){
+      return "form-inline my-2 my-lg-0";
+    } else if(this.loggedIn){
+      return "form-inline my-2 my-lg-0 hiddenForm";
+    }
   }
 }

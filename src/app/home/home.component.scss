@@ -17,13 +17,11 @@ $color : #f26522;
 
 #battleButton {
 
-position: fixed;
+// position: fixed;
 
 cursor: pointer;
 
-top: 40%;
-
-left: 50%;
+text-align: center;
 
 color: red;
 
@@ -42,6 +40,10 @@ position: relative;
 font-size: 1.5em;
 
 letter-spacing: 0.07em;
+
+margin-top: 100px;
+
+margin-left: 250px;
 
 
 
@@ -79,7 +81,7 @@ background: $color;
 
 z-index: -1;
 
-transition: 
+transition:
 
 transform 0.8s cubic-bezier(1,0,.37,1) 0.2s,
 
@@ -117,7 +119,7 @@ top: -$thick;
 
 transform: scale3d(1,0,1);
 
-} 
+}
 
 
 
@@ -181,7 +183,7 @@ transition: transform 0.3s cubic-bezier(1,0,.65,1.01);
 
 transform-origin: right;
 
-} 
+}
 
 }
 
@@ -213,7 +215,7 @@ left: -$thick;
 
 transform-origin: right;
 
-transition: 
+transition:
 
 transform 0.2s cubic-bezier(1,0,.65,1.01) 0.17s,
 
@@ -273,4 +275,18 @@ transform-origin: left;
 
 
 
+}
+.headerNav{
+  margin-right: 10px;
+}
+.text {
+  font-size: 70px;
+}
+.card {
+  display: inline-block;
+  text-align: left;
+  padding: 40px;
+}
+.stats {
+  text-align: center;
 }
