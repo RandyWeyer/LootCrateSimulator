@@ -10,9 +10,21 @@
     </div>
   <div class="inventory">
     <h3>Inventory</h3>
-    <ul>
-      <li *ngFor="let lootCrate of lootCrates | async">{{lootCrate.name}}</li>
-    </ul>
+    <div class="row">
+      <div class="card col-md-3" *ngFor="let lootCrate of lootCrates | async">
+        <div class="card-body">
+          <h4 class="card-title">{{lootCrate.name}}</h4>
+          <button (click)="openBox(lootCrate)" class="btn btn-success">Open</button>
+          <div [class]="showLoot(lootCrate)">
+            <div *ngIf="lootCrate.attack">ATTACK: +{{lootCrate.attack}}</div>
+            <div *ngIf="lootCrate.idleAttack">IDLE ATTACK: +{{lootCrate.idleAttack}}</div>
+            <div *ngIf="lootCrate.critChance">CRITICAL CHANCE: +{{lootCrate.critChance}}</div>
+            <div *ngIf="lootCrate.criticalDamage">CRITICAL DAMAGE: +{{lootCrate.criticalDamage}}</div>
+            <div *ngIf="lootCrate.goldRate">GOLD RATE: +{{lootCrate.goldRate}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>

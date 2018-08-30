@@ -1,0 +1,6 @@
+.card {
+  text-align: center;
+  display:inline-block;
+  min-height: 150px;
+  column-gap: 5px;
+}

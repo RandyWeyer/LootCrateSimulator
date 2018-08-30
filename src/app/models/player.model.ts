@@ -1,4 +1,4 @@
-import { lootCrate } from './lootcrate.model'
+import { LootCrate } from './lootcrate.model'
 
 export class Player
 {
