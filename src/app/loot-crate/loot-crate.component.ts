@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
-import { lootCrate } from '../models/lootcrate.model'
+import { LootCrate } from '../models/lootcrate.model'
 import { Player } from '../models/player.model';
 import { PlayerService } from '../player.service';
 import { Router } from '@angular/router';
@@ -29,6 +29,7 @@ export class LootCrateComponent implements OnInit {
   currentPlayer;
   gameData;
   lootArray = [];
+  lootCrates: FirebaseObjectObservable<any[]>;
 
   constructor(
   private playerService: PlayerService,
@@ -49,6 +50,7 @@ export class LootCrateComponent implements OnInit {
       this.currentActivePlayer.subscribe(player => {
         this.playerService.setActivePlayer(player);
       })
+      this.lootCrates = this.playerService.getLootCrates(this.activePlayerId);
   }
 
   homeClicked(activePlayer)

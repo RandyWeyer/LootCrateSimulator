@@ -1,6 +1,6 @@
 import { Player } from './player.model';
 
-export class lootCrate {
+export class LootCrate {
   constructor(public name: string, public idleAttack: number, public attack: number, public critChance: number, public criticalDamage: number, public goldRate: number, public itemKey: string) {
     let itemAmount =  4;
     console.log('Before for');

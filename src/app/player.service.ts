@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Player } from './models/player.model';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { lootCrate } from './models/lootcrate.model'
+import { LootCrate } from './models/lootcrate.model'
 
 @Injectable()
 export class PlayerService
@@ -55,13 +55,16 @@ insert(player: Player) {
 }
 generateLootCrate(currentPlayer)
 {
-  this.generatedLootCrate = new lootCrate('', null, null, null, null, null, '');
+  this.generatedLootCrate = new LootCrate('', null, null, null, null, null, '');
   return this.activePlayer.playerLoot;
 }
 generateShopCrate()
 {
-  this.generatedShopCrate = new lootCrate('', null, null, null, null, null, '');
+  this.generatedShopCrate = new LootCrate('', null, null, null, null, null, '');
   return this.generatedShopCrate;
+}
+getLootCrates(playerId: string){
+  return this.database.object('players/' + playerId + '/playerLoot/');
 }
 
   insertPlayer(newPlayer) {

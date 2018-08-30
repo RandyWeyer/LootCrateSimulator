@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { Player } from './models/player.model';
 import { PlayerService } from './player.service';
 import { Injectable } from '@angular/core';
-import { lootCrate } from './models/lootcrate.model'
+import { LootCrate } from './models/lootcrate.model'
 
 import { routing } from './app.routing';
 

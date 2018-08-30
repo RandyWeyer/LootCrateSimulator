@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Player } from './models/player.model';
 import { PlayerService } from './player.service';
 import { Injectable } from '@angular/core';
-import { lootCrate } from './models/lootcrate.model';
+import { LootCrate } from './models/lootcrate.model';
 
 @Component({
   selector: 'app-root',

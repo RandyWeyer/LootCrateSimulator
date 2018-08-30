@@ -1,4 +1,5 @@
 
+<div class="container">
 
   <h1>Loot Crate</h1>
   <button (click)="shopClicked()" class="btn btn-primary">Shop</button>
@@ -7,3 +8,11 @@
     <div *ngIf="watchClick===true">
       {{shopLoot.name}}
     </div>
+  <div class="inventory">
+    <h3>Inventory</h3>
+    <ul>
+      <li *ngFor="let lootCrate of lootCrates | async">{{lootCrate.name}}</li>
+    </ul>
+  </div>
+
+</div>

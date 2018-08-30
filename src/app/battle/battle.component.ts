@@ -215,4 +215,9 @@ export class BattleComponent implements OnInit {
   setBackground(){
     ["auberge1", "auberge2", "autel", "camp", "cave", "caverne", "champ", "chateau1", "chateau2", "crypte", "desert", "eglise", "eglise1", "etang", "ferme", "foret", "foret1", "foret2", "foret3", "foret11", "foret21", "foret31", "grotte", "jardins", "lisiere", "manoir", "mine", "mine1", "mine2", "moulin", "moulin1", "moulin2", "oasis1", "oasis2", "oasis3", "pyramide", "route", "ruines", "sentier1", "sentier2", "souterrain", "souterrains", "temple1", "temple2", "tresor", "trone", "ville", "volcan"]
   }
+  backHome(){
+    this.currentActivePlayer.subscribe( player =>{
+      this.router.navigate(['home', player.$key]);
+    })
+  }
 }
