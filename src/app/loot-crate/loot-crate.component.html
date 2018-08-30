@@ -15,7 +15,7 @@
         <div class="card-body">
           <h4 class="card-title">{{lootCrate.name}}</h4>
           <button (click)="openBox(lootCrate)" class="btn btn-success">Open</button>
-          <div [class]="showLoot(lootCrate)">
+          <div *ngIf="lootCrate" [class]="showLoot(lootCrate)">
             <div *ngIf="lootCrate.attack">ATTACK: +{{lootCrate.attack}}</div>
             <div *ngIf="lootCrate.idleAttack">IDLE ATTACK: +{{lootCrate.idleAttack}}</div>
             <div *ngIf="lootCrate.critChance">CRITICAL CHANCE: +{{lootCrate.critChance}}</div>
