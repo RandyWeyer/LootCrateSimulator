@@ -25,6 +25,7 @@ export class BattleComponent implements OnInit {
   percentHealth;
   currentLevel: number = 1;
   backgroundImage;
+  startInterval;
 
   constructor
   (
@@ -153,7 +154,6 @@ export class BattleComponent implements OnInit {
   }
 
   idleClickDamage() {
-
     this.currentActivePlayer.subscribe( player => {
       const startInterval = setInterval(() => {
         if(Math.ceil(this.currentLevelEnemy.hitPoints) > 0){
@@ -177,7 +177,6 @@ export class BattleComponent implements OnInit {
     })
   }
   bossRegen() {
-
     this.currentActivePlayer.subscribe( player => {
       if(this.enemyIsBoss(player)){
         const startInterval = setInterval(() => {
@@ -207,7 +206,7 @@ export class BattleComponent implements OnInit {
     if(this.currentLevelEnemy.hitPoints <= 20 ){
       return "";
     } else {
-      return "animated slideInLeft";
+      return "animated fadeInLeft delay-1s";
     }
   }
   setBackground(){

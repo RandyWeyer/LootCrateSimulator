@@ -4,7 +4,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
       </ul>
-      <div *ngIf="currentActivePlayer === null" class="headerNav">Welcome to LCS!!</div>
+      <div *ngIf="currentActivePlayer === null" class="headerNav">Welcome to Loot Crate Simulator!!</div>
       <div *ngIf="currentActivePlayer != null" class="headerNav">Welcome, {{(currentActivePlayer | async)?.username}}</div>
       <div *ngIf="currentActivePlayer === null; else logged">
         <form class="form-inline my-2 my-lg-0">
@@ -38,12 +38,12 @@
         <div><h4>Idle Attack: {{(currentActivePlayer | async)?.idleAttack}}</h4></div>
         <div><h4>Base Click Damage: {{(currentActivePlayer | async)?.attack}}</h4></div>
         <div><h4>Crit Chance: {{(currentActivePlayer | async)?.critChance}}%</h4></div>
-        <div><h4>Crit Damage: {{(currentActivePlayer | async)?.criticalDamage}}%</h4></div>
+        <div><h4>Crit Damage: {{(currentActivePlayer | async)?.criticalDamage}}x</h4></div>
         <div><h4>Gold: {{(currentActivePlayer | async)?.gold}}</h4></div>
         <div><h4>Gold Rate: {{(currentActivePlayer | async)?.goldRate}}</h4></div>
       </ng-template>
     </div>
-    <div class="playButton">
+    <div *ngIf="currentActivePlayer != null" class="playButton">
       <a id="battleButton" (click)="play()">
         <span class="text">PLAY!</span>
         <span class="line -right"></span>
