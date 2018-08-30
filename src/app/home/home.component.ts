@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   currentRoute: string = this.router.url;
   constructor(private playerService: PlayerService, private router: Router,private route: ActivatedRoute) { }
   loggedIn: boolean = false;
+  accountCreate: boolean = false;
   ngOnInit()
   {
     if(this.router.url === "/"){
@@ -90,7 +91,7 @@ export class HomeComponent implements OnInit {
     let username = inputNewName;
     let newPlayer: Player = new Player(username, userpassword, level, idleAttack, attack, critChance, criticalDamage, gold, goldRate, playerLoot, isActive);
     this.playerService.insertPlayer(newPlayer);
-
+    this.accountCreate = true;
   }
   hideForm(){
     if(!this.loggedIn){
