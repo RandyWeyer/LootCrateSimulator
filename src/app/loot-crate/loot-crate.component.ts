@@ -34,6 +34,7 @@ export class LootCrateComponent implements OnInit {
   shopOpen: boolean = false;
   notEnoughGold: boolean = false;
   currentLevel: number = 1;
+  audio;
 
   constructor(
   private playerService: PlayerService,
@@ -63,6 +64,12 @@ export class LootCrateComponent implements OnInit {
       this.router.navigate(['home', player.$key]);
     })
   }
+  playAudio(){
+    this.audio = new Audio();
+    this.audio.src = "../../../assets/audio/songOne.mp3";
+    this.audio.load();
+    this.audio.play();
+  }
 
   shopClicked(buyAmount, price){
     var player;
@@ -74,6 +81,10 @@ export class LootCrateComponent implements OnInit {
     } else {
       this.notEnoughGold = false;
       this.lootArray = player.playerLoot;
+      if(buyAmount === 100){
+         console.log(buyAmount)
+       this.playAudio();
+       }
       for(let i = 0; i < buyAmount; i ++){
         this.shopLoot = this.playerService.generateShopCrate();
         this.lootArray.push(this.shopLoot);
